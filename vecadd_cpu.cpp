@@ -1,6 +1,10 @@
 #include <iostream>
 #include <math.h>
 #include <chrono>
+
+// got the code from a blog
+// ("An Even Easier Introduction to CUDA (Updated)",
+// https://developer.nvidia.com/blog/even-easier-introduction-cuda/)
  
 // function to add the elements of two arrays
 void add(int n, float *x, float *y)

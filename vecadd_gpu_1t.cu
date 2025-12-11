@@ -1,5 +1,9 @@
 #include <iostream>
 #include <math.h>
+
+// got the code from a blog
+// ("An Even Easier Introduction to CUDA (Updated)",
+// https://developer.nvidia.com/blog/even-easier-introduction-cuda/)
  
 // Kernel function to add the elements of two arrays
 __global__
