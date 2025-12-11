@@ -31,7 +31,9 @@ int main(void)
     cudaMemPrefetchAsync((void *)y, N*sizeof(float), deviceID) ;
  
  // Run kernel on 1M elements on the GPU
- add<<<1, 256>>>(N, x, y);
+ int blockSize = 256;
+ int numBlocks = (N + blockSize - 1) / blockSize;
+ add<<<numBlocks, blockSize>>>(N, x, y);
  
  // Wait for GPU to finish before accessing on host
  cudaDeviceSynchronize();
@@ -42,8 +44,10 @@ int main(void)
    maxError = fmax(maxError, fabs(y[i]-3.0f));
  }
  std::cout << "Max error: " << maxError << std::endl;
- std::cout << "Number of thread blocks: " << 1 << std::endl;
- std::cout << "Threads per block: " << 256 << std::endl;
+
+ std::cout << "Number of thread blocks: " << numBlocks << std::endl;
+ std::cout << "Threads per block: " << blockSize << std::endl;
+
  
  // Free memory
  cudaFree(x);
